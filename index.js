@@ -55,6 +55,10 @@ io.on("connection", (socket) => {
     });
 });
 
+//test vercel
+app.get("/", (req, res) => {
+  res.send("Hello from Vercel Node.js + Express server!");
+});
 // Lancement du serveur
 const PORT = process.env.PORT || 5000; 
 server.listen(PORT, (err) =>

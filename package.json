@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "back": "nodemon server.js",
+    "back": "nodemon index.js",
     "front": "cd binomyfront && npm start",
     "start": "concurrently \"npm run back\" \"npm run front\""
   },
