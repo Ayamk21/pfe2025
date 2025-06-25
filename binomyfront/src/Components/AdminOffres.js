@@ -40,14 +40,20 @@ function AdminOffres() {
                 className="bg-white border border-gray-200 rounded-2xl shadow-lg overflow-hidden transition-transform hover:scale-[1.01]"
               >
                 <img
-                  src={`http://localhost:5000/offres/${offre.images?.[0]}`}
+                  src={`https://pfe2025-api.vercel.app/offres/${offre.images?.[0]}`}
                   alt={offre.title}
                   className="h-48 w-full object-cover"
                 />
                 <div className="p-4">
-                  <h2 className="font-semibold text-lg text-gray-800 truncate">{offre.title}</h2>
-                  <p className="text-indigo-600 font-bold mt-1">{offre.price} DT</p>
-                  <p className="text-sm text-gray-500 mt-1">Par : {bailleur?.nom || "—"}</p>
+                  <h2 className="font-semibold text-lg text-gray-800 truncate">
+                    {offre.title}
+                  </h2>
+                  <p className="text-indigo-600 font-bold mt-1">
+                    {offre.price} DT
+                  </p>
+                  <p className="text-sm text-gray-500 mt-1">
+                    Par : {bailleur?.nom || "—"}
+                  </p>
 
                   <div className="mt-4 flex flex-wrap gap-2">
                     <button

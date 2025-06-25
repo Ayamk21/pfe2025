@@ -1,10 +1,12 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import axios from 'axios';
+import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import axios from "axios";
 
 // Récupérer tous les utilisateurs
 export const getusers = createAsyncThunk("users/get", async () => {
   try {
-    const response = await axios.get("http://localhost:5000/user/allusers");
+    const response = await axios.get(
+      "https://pfe2025-api.vercel.app/user/allusers"
+    );
     return response.data; // ✅ retourne uniquement les données JSON
   } catch (error) {
     console.error(error);
@@ -12,20 +14,25 @@ export const getusers = createAsyncThunk("users/get", async () => {
   }
 });
 
-export const getFilteredUsers = createAsyncThunk("users/filtered", async (filters) => {
+export const getFilteredUsers = createAsyncThunk(
+  "users/filtered",
+  async (filters) => {
     try {
       const params = new URLSearchParams();
       if (filters.age) params.append("age", filters.age);
       if (filters.institut) params.append("institut", filters.institut);
       if (filters.about) params.append("about", filters.about);
-  
-      const res = await axios.get(`http://localhost:5000/user/filter?${params.toString()}`);
+
+      const res = await axios.get(
+        `https://pfe2025-api.vercel.app/user/filter?${params.toString()}`
+      );
       return res.data;
     } catch (error) {
       console.error(error);
       throw error;
     }
-  });
+  }
+);
 
 const initialState = {
   users: null,
@@ -33,7 +40,7 @@ const initialState = {
 };
 
 export const usersSlice = createSlice({
-  name: 'users',
+  name: "users",
   initialState,
   reducers: {},
   extraReducers: {
@@ -48,15 +55,15 @@ export const usersSlice = createSlice({
       state.status = "rejected";
     },
     [getFilteredUsers.pending]: (state) => {
-        state.status = "pending";
-      },
-      [getFilteredUsers.fulfilled]: (state, action) => {
-        state.status = "fulfilled";
-        state.users = action.payload.users;
-      },
-      [getFilteredUsers.rejected]: (state) => {
-        state.status = "rejected";
-      },
+      state.status = "pending";
+    },
+    [getFilteredUsers.fulfilled]: (state, action) => {
+      state.status = "fulfilled";
+      state.users = action.payload.users;
+    },
+    [getFilteredUsers.rejected]: (state) => {
+      state.status = "rejected";
+    },
   },
 });
 

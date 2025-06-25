@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import EditUserModal from './EditUserModal';
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import EditUserModal from "./EditUserModal";
 
 function UserProfile({ user }) {
   const [editing, setEditing] = useState(false);
@@ -13,7 +13,10 @@ function UserProfile({ user }) {
         <p className="text-sm text-cyan-600 font-bold mb-1">{label}</p>
         <p
           className="text-lg text-gray-800"
-          style={{ fontFamily: "'Comic Sans MS', cursive", letterSpacing: "1px" }}
+          style={{
+            fontFamily: "'Comic Sans MS', cursive",
+            letterSpacing: "1px",
+          }}
         >
           {value || "—"}
         </p>
@@ -27,7 +30,11 @@ function UserProfile({ user }) {
         {/* Photo + boutons */}
         <div className="flex flex-col items-center md:w-1/3">
           <img
-            src={user.photo ? `http://localhost:5000/files/${user.photo}` : "https://res.cloudinary.com/jerrick/image/upload/d_642250b563292b35f27461a7.png,f_jpg,q_auto,w_720/67338d48953975001dd4b439.png"}
+            src={
+              user.photo
+                ? `https://pfe2025-api.vercel.app/files/${user.photo}`
+                : "https://res.cloudinary.com/jerrick/image/upload/d_642250b563292b35f27461a7.png,f_jpg,q_auto,w_720/67338d48953975001dd4b439.png"
+            }
             alt="Profil"
             className="w-40 h-40 rounded-full object-cover border-4 border-[#00AEEF] shadow-lg"
           />
@@ -56,9 +63,6 @@ function UserProfile({ user }) {
                 </button>
               </Link>
             )}
-
-            
-
           </div>
         </div>
 
@@ -75,7 +79,9 @@ function UserProfile({ user }) {
             >
               Bonjour, {user.prenom || "—"} 👋
             </h2>
-            <p className="text-gray-600 italic">{user.niveau} à {user.institut || "—"}</p>
+            <p className="text-gray-600 italic">
+              {user.niveau} à {user.institut || "—"}
+            </p>
             <p className="text-gray-500 mt-1">🎂 Âge : {user.age || "—"} ans</p>
           </div>
 
@@ -107,7 +113,9 @@ function UserProfile({ user }) {
       </div>
 
       {/* Modal externe d'édition */}
-      {editing && <EditUserModal user={user} onClose={() => setEditing(false)} />}
+      {editing && (
+        <EditUserModal user={user} onClose={() => setEditing(false)} />
+      )}
     </div>
   );
 }
