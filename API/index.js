@@ -15,6 +15,7 @@ const io = new Server(server, {
   cors: {
     origin: "*", // À adapter à l'URL de ton front si nécessaire (e.g., "http://localhost:3000")
     methods: ["GET", "POST", "PUT", "DELETE"], // Ajout des méthodes nécessaires
+    transports: ["polling"], // Utilisation du transport polling pour compatibilité avec les navigateurs
   },
 });
 
